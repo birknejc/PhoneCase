@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PhoneCase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc768a2ce711560143200907ed586bb5af8b8ef5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+017e45b7da5ea69560f151ca77e1970f029a9988")]
 [assembly: System.Reflection.AssemblyProductAttribute("PhoneCase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PhoneCase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
