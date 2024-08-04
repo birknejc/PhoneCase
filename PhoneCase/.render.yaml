@@ -4,7 +4,7 @@ services:
     docker:
       build:
         dockerfile: Dockerfile
-      image: blazorservercorr-image
+      image: phonecaseblazorserverapp-image
     plan: free
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
