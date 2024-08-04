@@ -5,6 +5,7 @@
 @using PhoneCase.ModelVal
 @using PhoneCase.Models
 @inject PhoneCase.DBServices.AppDbContext DbContext
+@inject NavigationManager NavigationManager
 
 
 <h3>Custom Phone Case</h3>
@@ -48,6 +49,10 @@
     <div>Grand Total: @grandTotal</div>
     <button type="submit">Buy</button>
 </EditForm>
+
+<div>
+    <button @onclick="NavigateToLiveUpdates">Live Chat</button>
+</div>
 
 @if (!string.IsNullOrEmpty(validationMessage))
 {
@@ -125,6 +130,11 @@
         editContext = new EditContext(newCase);
         validationMessage = null;
         StateHasChanged(); // Trigger UI refresh to reflect the new state
+    }
+
+    private void NavigateToLiveUpdates()
+    {
+        NavigationManager.NavigateTo("/live-updates");
     }
 
     private Dictionary<string, decimal> brandCosts = new Dictionary<string, decimal>
