@@ -158,6 +158,7 @@ C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp
 C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\PhoneCase.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\PhoneCase.RazorAssemblyInfo.cache
 C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\PhoneCase.RazorAssemblyInfo.cs
+C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\PhoneCase.sourcelink.json
 C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\birkn\Documents\IHCC\Summer 2024\Advanced .Net\PhoneCaseBlazorServerApp\PhoneCase\obj\Debug\net8.0\staticwebassets\msbuild.PhoneCase.Microsoft.AspNetCore.StaticWebAssets.props
