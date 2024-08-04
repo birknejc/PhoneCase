@@ -1,0 +1,179 @@
+﻿@page "/caseform"
+
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.EntityFrameworkCore
+@using PhoneCase.ModelVal
+@using PhoneCase.Models
+@inject PhoneCase.DBServices.AppDbContext DbContext
+
+
+<h3>Custom Phone Case</h3>
+
+<EditForm EditContext="@editContext" OnValidSubmit="@AddCustomCase">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="brand">Brand</label>
+        <InputText id="brand" @bind-Value="newCase.Brand" />
+        <ValidationMessage For="@(() => newCase.Brand)" />
+    </div>
+    <div>
+        <label for="model">Phone Model</label>
+        <InputText id="model" @bind-Value="newCase.Model" />
+        <ValidationMessage For="@(() => newCase.Model)" />
+    </div>
+    <div>
+        <label for="material">Material</label>
+        <InputText id="material" @bind-Value="newCase.Material" />
+        <ValidationMessage For="@(() => newCase.Material)" />
+    </div>
+    <div>
+        <label for="cost">Highest Possible Cost</label>
+        <InputText id="cost" @bind-Value="costString" />
+        <ValidationMessage For="@(() => costString)" />
+    </div>
+    <div>
+        <label for="trimColor">Trim Color</label>
+        <InputText id="trimColor" @bind-Value="newCase.TrimColor" />
+        <ValidationMessage For="@(() => newCase.TrimColor)" />
+    </div>
+    <div>
+        <label for="accentColor">Accent Color</label>
+        <InputText id="accentColor" @bind-Value="newCase.AccentColor" />
+        <ValidationMessage For="@(() => newCase.AccentColor)" />
+    </div>
+    <div>Total Before Tax: @totalCost</div>
+    <div>Total Tax (7%): @totalTax</div>
+    <div>Grand Total: @grandTotal</div>
+    <button type="submit">Buy</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(validationMessage))
+{
+    <div class="alert alert-danger">@validationMessage</div>
+}
+
+<ul>
+    @foreach (var customCase in customCases)
+    {
+        <li>@customCase.Brand - @customCase.Model - @customCase.Material - @customCase.Cost - @customCase.TrimColor - @customCase.AccentColor</li>
+    }
+</ul>
+
+@code {
+    private CustomCase newCase;
+    private EditContext editContext;
+    public List<CustomCase> customCases = new List<CustomCase>();
+    private decimal totalCost;
+    private decimal totalTax;
+    private decimal grandTotal;
+    private const decimal TaxRate = 0.07m;
+    private string validationMessage;
+
+    private string costString
+    {
+        get => newCase.Cost?.ToString() ?? "";
+        set => newCase.Cost = string.IsNullOrWhiteSpace(value) ? (decimal?)null : decimal.Parse(value);
+    }
+
+    protected override void OnInitialized()
+    {
+        newCase = new CustomCase();
+        editContext = new EditContext(newCase);
+    }
+
+    private async Task AddCustomCase()
+    {
+        CalculateTotalCost();
+        Console.WriteLine($"Total Cost Calculated: {totalCost}");
+        if (totalCost > newCase.Cost)
+        {
+            validationMessage = "You have gone over your highest possible cost. Please readjust your options or increase your cost.";
+            Console.WriteLine(validationMessage);
+        }
+        else
+        {
+            DbContext.Cases.Add(newCase);
+            await DbContext.SaveChangesAsync();
+            customCases.Add(newCase);
+            ClearForm();
+        }
+    }
+
+    private void CalculateTotalCost()
+    {
+        totalCost = 0;
+
+        // Adding costs based on selections
+        var brandCost = brandCosts.GetValueOrDefault(newCase.Brand, 0);
+        var modelCost = modelCosts.GetValueOrDefault(newCase.Model, 0);
+        var materialCost = materialCosts.GetValueOrDefault(newCase.Material, 0);
+        var trimColorCost = trimColorCosts.GetValueOrDefault(newCase.TrimColor, 0);
+        var accentColorCost = accentColorCosts.GetValueOrDefault(newCase.AccentColor, 0);
+
+        totalCost = brandCost + modelCost + materialCost + trimColorCost + accentColorCost;
+
+        // Calculate tax and grand total
+        totalTax = totalCost * TaxRate;
+        grandTotal = totalCost + totalTax;
+    }
+
+    private void ClearForm()
+    {
+        newCase = new CustomCase();
+        editContext = new EditContext(newCase);
+        validationMessage = null;
+        StateHasChanged(); // Trigger UI refresh to reflect the new state
+    }
+
+    private Dictionary<string, decimal> brandCosts = new Dictionary<string, decimal>
+    {
+        { "Apple", 100 },
+        { "Samsung", 90 },
+        { "Razor", 80 },
+        { "TheAlmightyMotorola", 70 }
+    };
+
+    private Dictionary<string, decimal> modelCosts = new Dictionary<string, decimal>
+    {
+        { "ModelA", 50 },
+        { "ModelB", 60 },
+        { "ModelC", 70 },
+        { "ModelD", 80 }
+    };
+
+    private Dictionary<string, decimal> materialCosts = new Dictionary<string, decimal>
+    {
+        { "Carbon Fiber", 30 },
+        { "Metal", 40 },
+        { "Titanium", 50 },
+        { "Plastic", 20 },
+        { "Sheet Metal", 35 },
+        { "Clam Shell", 25 },
+        { "Faux Animal Fur", 45 },
+        { "Apples", 55 }
+    };
+
+    private Dictionary<string, decimal> trimColorCosts = new Dictionary<string, decimal>
+    {
+        { "Blue", 10 },
+        { "Pink", 15 },
+        { "Yellow", 20 },
+        { "Green", 25 },
+        { "Greener", 30 },
+        { "Yellowish", 35 },
+        { "Blueberry", 40 }
+    };
+
+    private Dictionary<string, decimal> accentColorCosts = new Dictionary<string, decimal>
+    {
+        { "Blue", 8 },
+        { "Pink", 12 },
+        { "Yellow", 16 },
+        { "Green", 20 },
+        { "Greener", 24 },
+        { "Yellowish", 28 },
+        { "Blueberry", 32 }
+    };
+}

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneCase", "PhoneCase.csproj", "{5256F38E-49E7-43A1-B783-9118693742DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "..\TestProject1\TestProject1.csproj", "{08A73B29-05DE-4650-AE26-2F726E96EEF5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DCCA938-4D40-4771-83CB-62E145C3F708}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.render.yaml = .render.yaml
+		dockerfile.txt = dockerfile.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5256F38E-49E7-43A1-B783-9118693742DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5256F38E-49E7-43A1-B783-9118693742DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5256F38E-49E7-43A1-B783-9118693742DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5256F38E-49E7-43A1-B783-9118693742DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08A73B29-05DE-4650-AE26-2F726E96EEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A73B29-05DE-4650-AE26-2F726E96EEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A73B29-05DE-4650-AE26-2F726E96EEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A73B29-05DE-4650-AE26-2F726E96EEF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E605D1A-5AD9-4F5D-BD49-35B1343D043E}
+	EndGlobalSection
+EndGlobal

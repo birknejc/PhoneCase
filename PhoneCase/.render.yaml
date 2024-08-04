@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: phonecaseblazorserverapp
+    docker:
+      build:
+        dockerfile: Dockerfile
+      image: blazorservercorr-image
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production

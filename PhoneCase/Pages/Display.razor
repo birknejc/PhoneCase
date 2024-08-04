@@ -1,0 +1,36 @@
+﻿@page "/display"
+
+@using Microsoft.EntityFrameworkCore
+@using PhoneCase.Models
+@using PhoneCase.DBServices
+@inject AppDbContext DbContext
+
+<h3>All Custom Phone Cases</h3>
+
+<ul>
+    @if (customCases == null)
+    {
+        <li>Loading...</li>
+    }
+    else if (customCases.Count == 0)
+    {
+        <li>No cases found.</li>
+    }
+    else
+    {
+        @foreach (var customCase in customCases)
+        {
+            <li>@customCase.Brand - @customCase.Model - @customCase.Material - @customCase.Cost - @customCase.TrimColor - @customCase.AccentColor</li>
+        }
+    }
+</ul>
+
+@code {
+    public List<CustomCase> customCases { get; set; } = new List<CustomCase>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Fetch data from the database
+        customCases = await DbContext.Cases.ToListAsync();
+    }
+}
